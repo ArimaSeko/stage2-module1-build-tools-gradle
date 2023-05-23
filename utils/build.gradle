@@ -1,40 +1,77 @@
+//plugins {
+//    id 'java-library'
+//    id 'maven-publish'
+//}
+//
+//java {
+//    sourceCompatibility = "1.6"
+//}
+//
+//repositories {
+// mavenCentral()
+//}
+//
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            groupId 'org.gradle.sample'
+//            artifactId 'libary'
+//            version '1.1'
+//
+//            from components.java
+//        }
+//    }
+//}
+//
+//compile 'org.apache.commons:commons-lang3:3.12.0'
+//
+//jar {
+//    manifest {
+//        attributes('Main-Class':             'Your main class',
+//                'Implementation-Title':   'Your title',
+//                'Implementation-Version': '1.1')
+//    }
+//}
+//
+//test {
+//    useJUnitPlatform()
+//}
+//
+//publishMavenPublicationToMavenLocal {}.mustRunAfter('build')
 plugins {
-    id 'java-library'
-    id 'maven-publish'
+    id 'java-library' // Plugin for Java library project
+    id 'maven-publish' // Plugin for publishing the library to a Maven repository
 }
 
 java {
-    sourceCompatibility = "1.6"
+    sourceCompatibility = JavaVersion.VERSION_11 // Set the source compatibility to Java 11 or any desired version
 }
 
 repositories {
- mavenCentral()
+    mavenCentral() // Add Maven Central repository or any other repository where required dependencies are located
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId 'org.gradle.sample'
-            artifactId 'libary'
-            version '1.1'
+            groupId 'com.example' // Provide the desired groupId for the published library
+            artifactId 'utils' // Provide the desired artifactId for the published library
+            version '1.0' // Provide the desired version for the published library
 
             from components.java
         }
     }
 }
 
-compile 'org.apache.commons:commons-lang3:3.12.0'
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.10' // Add Apache Commons Lang 3.10 (or higher) dependency
+}
 
 jar {
     manifest {
-        attributes('Main-Class':             'Your main class',
-                'Implementation-Title':   'Your title',
-                'Implementation-Version': '1.1')
+        attributes(
+                'Implementation-Title': 'Utils Library',
+                'Implementation-Version': '1.0'
+        ) // Provide the desired attributes for the JAR manifest
     }
 }
-
-test {
-    useJUnitPlatform()
-}
-
-publishMavenPublicationToMavenLocal {}.mustRunAfter('build')
