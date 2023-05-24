@@ -1,3 +1,26 @@
+plugins {
+    // id for java application
+    id 'application'
+}
+
+group 'com.epam'
+version '1.0-SNAPSHOT'
+
+repositories {
+    // provide repository, where required dependencies are located
+    mavenCentral()
+}
+
+dependencies {
+    // add dependency on utils library
+    implementation fileTree(dir: 'utils', include: ['*.jar'])
+    implementation project(path: ':utils')
+}
+
+application {
+    // main class
+    mainClassName = 'com.epam.demo.App'
+}
 //add everything here
 
 test {
